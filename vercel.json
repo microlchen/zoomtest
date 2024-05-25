@@ -5,7 +5,7 @@
         "headers": [
           {
             "key": "Content-Security-Policy",
-            "value": "default-src 'self'; script-src 'self' example.com; style-src 'self' example.com;"
+            "value": "default-src 'self'; script-src 'self' example.com; style-src 'self' example.com; connect-src 'self' http://localhost:5000;"
           },
           {
             "key": "Strict-Transport-Security",
@@ -23,3 +23,4 @@
       }
     ]
   }
+  
