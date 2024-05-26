@@ -11,7 +11,7 @@ async function fetchProcessedAudio() {
 
 function TextDisplay({ content, side}) {
   const [processedAudio, setProcessedAudio] = useState('Live Transcription: ');
-  const [processedAudioRight, setProcessedAudioRight] = useState(content | 'just here for aesthetics');
+  const [processedAudioRight, setProcessedAudioRight] = useState('just here for aesthetics');
 
   useEffect(() => {
     if (side === 'left') {

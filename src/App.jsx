@@ -66,7 +66,6 @@ function App() {
         console.log(info.token)
         console.log(info.code)
         console.log(info.meetingID)
-        setRightContent(info)
       })
       .catch(error => console.error('Error fetching zoom', error));
   };
