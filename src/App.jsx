@@ -63,6 +63,7 @@ function App() {
   const fetchZoom = ()=> {
     sendToZoom()
       .then(info => {
+        console.log(info)
         setRightContent(info)
       })
       .catch(error => console.error('Error fetching zoom', error));
