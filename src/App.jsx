@@ -63,7 +63,7 @@ function App() {
   const fetchZoom = ()=> {
     sendToZoom()
       .then(info => {
-        console.log(info.tokens)
+        console.log(info.token)
         console.log(info.code)
         console.log(info.meetingID)
         setRightContent(info)

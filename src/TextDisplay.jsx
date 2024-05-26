@@ -38,7 +38,7 @@ function TextDisplay({ content, side}) {
 
   const handleClearClick = () => {
     setProcessedAudio('Live Transcription: ');
-    setProcessedAudioRight('');
+    setProcessedAudioRight(content);
   };
 
   return (
