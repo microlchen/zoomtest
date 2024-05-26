@@ -32,6 +32,7 @@ function sendAuthorizationCode(code) {
 function App() {
   const [isRecording, setIsRecording] = useState(false);
   const [leftContent, setLeftContent] = useState('');
+  const [rightContent, setRightContent] = useState('');
 
   const startRecording = () => {
     setIsRecording(true);
@@ -51,30 +52,21 @@ function App() {
     });
   };
 
-  const sendToZoom = () => {
-    fetch('http://localhost:5000/send_to_zoom', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ 'content': 'HELLOWORLD' }) 
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Failed to send to Zoom');
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (data.error) {
-        throw new Error(data.error);
-      } else {
-        console.log('Message sent to Zoom successfully');
-      }
-    })
-    .catch(error => console.error('Error sending to Zoom:', error));
+  async function sendToZoom(){
+    const response = await fetch('http://localhost:5000/send_to_zoom');
+    if (!response.ok) {
+      throw new Error('Failed to fetch processed audio');
+    }
+    const data = await response.json();
+    return data.processed_audio;
+  }
+  const fetchZoom = ()=> {
+    sendToZoom()
+      .then(info => {
+        setRightContent(info)
+      })
+      .catch(error => console.error('Error fetching zoom', error));
   };
-  
   const fetchData = () => {
     fetch('http://localhost:5000/get_processed_audio')
       .then(response => {
@@ -122,10 +114,11 @@ function App() {
       <div className="header">
         <button className="top-left-button" onClick={startRecording} disabled={isRecording}>Start Recording</button>
         <button className="top-left-button stop-button" onClick={stopRecording} disabled={!isRecording}>Stop Recording</button>
-        <button className="top-left-button send-button" onClick={sendToZoom}>Send to Zoom</button>
+        <button className="top-left-button send-button" onClick={fetchZoom}>Zoom?</button>
       </div>
       <div className="content">
-        <TextDisplay content={leftContent} side="left" funct={()=>setLeftContent}/>
+        <TextDisplay content={leftContent} side="left"/>
+        <TextDisplay content={rightContent} side="right"/>
       </div>
     </div>
     );

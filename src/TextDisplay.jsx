@@ -9,7 +9,7 @@ async function fetchProcessedAudio() {
   return data.processed_audio;
 }
 
-function TextDisplay({ content, side, funct}) {
+function TextDisplay({ content, side}) {
   const [processedAudio, setProcessedAudio] = useState('Live Transcription: ');
   const [processedAudioRight, setProcessedAudioRight] = useState('just here for aesthetics');
 
@@ -20,7 +20,6 @@ function TextDisplay({ content, side, funct}) {
           .then(audio => {
             if (audio !== null) {
               setProcessedAudio(prevAudio => prevAudio + audio + ' ');
-              funct(processedAudio);
             }
           })
           .catch(error => console.error('Error fetching processed audio:', error));
