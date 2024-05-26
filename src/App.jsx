@@ -52,13 +52,12 @@ function App() {
   };
 
   const sendToZoom = () => {
-    console.log(leftContent);
     fetch('http://localhost:5000/send_to_zoom', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ content: leftContent }) // Adjust this as needed
+      body: JSON.stringify({ 'content': 'HELLOWORLD' }) 
     })
     .then(response => {
       if (!response.ok) {
