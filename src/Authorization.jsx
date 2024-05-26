@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 
-const REDIRECT_URI = 'http://localhost:5173/'
+const REDIRECT_URI = 'https://zoomtest.vercel.app/'
 const CLIENT_ID = 'WEubvnyBSjeCq7wKY2UVMw'
 class AuthorizationButton extends React.Component {
     handleClick = () => {
