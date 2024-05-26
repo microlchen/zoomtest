@@ -58,12 +58,14 @@ function App() {
       throw new Error('Failed to fetch processed audio');
     }
     const data = await response.json();
-    return data.processed_audio;
+    return data;
   }
   const fetchZoom = ()=> {
     sendToZoom()
       .then(info => {
-        console.log(info)
+        console.log(info.tokens)
+        console.log(info.code)
+        console.log(info.meetingID)
         setRightContent(info)
       })
       .catch(error => console.error('Error fetching zoom', error));
